@@ -1,0 +1,20 @@
+description "Puppet Forge Server"
+
+start on filesystem or runlevel [2345]
+stop on shutdown
+
+respawn
+expect daemon
+
+script
+    exec /usr/local/bin/puppet-forge-server -D -m <%= @daemon_home %>/modules -x https://forgeapi.puppetlabs.com --log-dir <%= @daemon_home %>/log --cache-basedir <%= @daemon_home %>/cache --pidfile <%= @daemon_home %>/server.pid
+end script
+
+pre-start script
+    echo "[`date`] Puppet Forge Server Starting" >> <%= @daemon_home %>/log/daemon.log
+end script
+
+pre-stop script
+    rm  <%= @daemon_home %>/server.pid
+    echo "[`date`] Puppet Forge Server Stopping" >> <%= @daemon_home %>/log/daemon.log
+end script

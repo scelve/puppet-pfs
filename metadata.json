@@ -1,0 +1,14 @@
+{
+  "name": "scelve-pfs",
+  "version": "0.1.0",
+  "author": "scelve",
+  "summary": "Setup puppet-forge-server",
+  "license": "Apache 2.0",
+  "source": "https://github.com/scelve/puppet-pfs.git",
+  "project_page": "https://github.com/scelve/puppet-pfs",
+  "issues_url": "https://github.com/scelve/puppet-pfs/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+

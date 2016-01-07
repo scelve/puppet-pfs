@@ -1,0 +1,15 @@
+[Unit]
+Description=Puppet Forge Server
+After=network.target
+
+[Service]
+Type=forking
+User=<%= @daemon_user %>
+Group=<%= @daemon_user %>
+PIDFile=<%= @daemon_home %>/server.pid
+ExecStart=/usr/local/bin/puppet-forge-server -D -m <%= @daemon_home %>/modules -x https://forgeapi.puppetlabs.com --log-dir <%= @daemon_home %>/log --cache-basedir <%= @daemon_home %>/cache --pidfile <%= @daemon_home %>/server.pid
+TimeoutStartSec=60
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
